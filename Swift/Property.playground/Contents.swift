@@ -132,3 +132,38 @@ Circle.count        // 1
 
 let secondCircle = Circle(radius: 3)
 Circle.count        // 2
+
+
+
+
+
+
+
+// ==================================
+// ✨ 속성 감시자
+// willSet / didSet
+
+// 변수가 변했을 때 업데이트하려는 패턴에서 사용
+
+struct User {
+    var name: String
+    var message: String {
+        willSet {
+            print("\(message)에서 \(newValue)로 변경될 예정입니다")
+        }
+        didSet {
+            print("\(oldValue)에서 \(message)로 이미 변경되었습니다")
+        }
+    }
+    init(name: String, message: String) {
+        self.name = name
+        self.message = message
+    }
+}
+
+var yeonsuProfile = User(name: "yeonsu", message: "안녕하소")
+yeonsuProfile.name
+yeonsuProfile.message
+
+yeonsuProfile.message = "할로 ㅎㅇㅎㅇ"
+

@@ -83,3 +83,52 @@ man1.weight     // 66.978
 
 // 계산 속성은 메서드!!
 // 메모리 공간을 가지지 않고, 속성에 접근했을 때 계산한 뒤 그 결과를 리턴하거나 세팅하는 메서드
+
+
+
+
+
+
+// ==================================
+// ✨ 타입 속성
+// static
+
+// 타입 자체에 속한 속성으로 Type.property로 접근
+
+class Circle {
+    // 저장 타입 속성(지연 속성의 성격을 가짐 - 접근 시 메모리 공간 차지)
+    static let pi: Double = 3.14
+    static var count: Int = 0   // 인스턴스 갯수 확인
+    
+    // 저장 속성
+    var radius: Double
+    
+    // 계산 속성
+    var diameter: Double {
+        get {
+            return radius * 2
+        }
+        set(newValue) {
+            radius = newValue / 2
+        }
+    }
+    
+    // 계산 타입 속성
+    static var multiplePi: Double {
+        return pi * pi  // ** 타입에 속해있기 때문에 타입 생략 가능
+    }
+    
+    // 생성자
+    init(radius: Double) {
+        self.radius = radius
+        Circle.count += 1   // 생성자에서 타입 속성에 접근하는 경우 인스턴스에 속해있기 때문에 Circle.count와 같이 타입 생략 불가
+    }
+}
+
+let myCircle = Circle(radius: 5)
+myCircle.diameter   // 10
+myCircle.radius     // 5
+Circle.count        // 1
+
+let secondCircle = Circle(radius: 3)
+Circle.count        // 2

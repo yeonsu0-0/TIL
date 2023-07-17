@@ -2,7 +2,7 @@ import UIKit
 
 
 // ==================================
-// ✨ 지정 생성자 / 편의 생성자
+// MARK: - ✨ 지정 생성자 / 편의 생성자
 
 struct ColorSet1 {
     let red, green, blue: Double
@@ -68,7 +68,7 @@ class ColorSet2 {
 
 
 // ==================================
-// ✨ 클래스의 상속 && 지정 생성자 / 편의 생성자
+// MARK: - ✨ 클래스의 상속 && 지정 생성자 / 편의 생성자
 
 
 class Aclass {
@@ -127,3 +127,138 @@ test22.x    // 2
   *델리게이트 어크로스
   *편의 생성자는 동일한 클래스에서 지정 생성자를 호출 **/
 
+
+
+
+
+
+// ==================================
+// MARK: - ✨ 생성자의 상속과 재정의
+
+
+/**
+  * 생성자는 기본적으로 상위 클래스의 생성자를 상속하지 않고 재정의하는 것이 원칙
+  * 상위 클래스의 지정 생성자와 현재 클래스의 저장 속성을 고려 **/
+
+
+/**===========================================
+  * [상위 지정 생성자]
+  * 1. 하위 클래스에서 지정 생성자로 재정의
+  * 2. 하위 클래스에서 편의 생성자로 재정의
+  * 3. 재정의X
+ 
+  * [상위 편의 생성자]
+  * 재정의X
+
+ ---------------------------------------------
+ 
+  * [하위(현재) 지정 생성자]
+  * 1. 하위의 모든 저장 속성 초기화
+  * 2. 상위 클래스의 지정 생성자 호출(super.init)
+ 
+  * [하위(현재) 편의 생성자]
+  * 현재 클래스의 지정 생성자 호출
+==============================================**/
+
+
+
+
+class Vehicle {
+    var numberOfWheels = 0
+    
+    var description: String {
+        return "\(numberOfWheels) wheel(s)"
+    }
+    
+    // init() { }
+    // -> 저장 속성에 기본값이 있고, 따로 생성자를 구현하지 않았기 때문에 기본 생성자 자동 구현
+}
+
+
+class Bicycle: Vehicle {
+    
+    override init() {
+        super.init()
+        numberOfWheels = 2
+    }
+    
+    // -> 새로운 저장 속성이 없기 때문에 상위 지정 생성자 호출하여 메모리 초기화 후,
+    // 상위에서 구현한 속성에 접근하여 값 변경
+}
+
+
+class Taxi: Vehicle {
+    var color: String
+    
+    override init() {
+        color = "yellow"
+        super.init()
+    }
+    // -> 상위 클래스 구현에 init()만 있는 경우 생략 가능(암시적 요청)
+    
+    init(color: String) {
+        self.color = color
+        super.init()
+        numberOfWheels = 4
+    }
+}
+
+let myTransfer = Taxi()
+myTransfer.color        // yellow
+myTransfer.numberOfWheels   // 0
+
+let myTransfer2 = Taxi(color: "black")
+myTransfer2.color       // black
+myTransfer2.numberOfWheels  // 4
+
+
+
+
+
+
+// ==================================
+// MARK: - ✨ 생성자의 자동 상속
+
+// 1. 하위 클래스에서 새로운 저장 속성이 없거나, 기본값이 설정되어 있다면
+// -> 상위 클래스의 지정 생성자 모두 자동 상속
+
+// 2. 지정 생성자로 자동 상속하는 경우 / 상위 지정 생성자를 모두 재정의하는 경우
+// -> 상위 클래스의 편의 생성자 모두 자동 상속
+
+
+class Food {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    convenience init() {
+        self.init(name: "Untitled")
+    }
+}
+
+
+class Recipe: Food {
+    var quantity: Int
+    
+    // 모든 속성 초기화
+    init(name: String, quantity: Int) {
+        self.quantity = quantity
+        super.init(name: name)
+    }
+    
+    // 상위 지정 생성자를 편의 생성자로 재정의
+    override convenience init(name: String) {
+        self.init(name: name, quantity: 0)
+    }
+}
+
+
+class ShoppingList: Recipe {
+    var isPurchased = false
+    
+    // init(name: String, quantity: Int) {}
+    // convenience init(name: String) {}
+    // convenience init() {}
+}

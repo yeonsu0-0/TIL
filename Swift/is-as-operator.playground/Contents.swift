@@ -89,3 +89,47 @@ let myFavoriteBook: Book = Library()
 if let newBook = myFavoriteBook as? Library {
     print("다운캐스팅 성공")
 }
+
+
+
+
+
+// ==================================
+// MARK: - ✨ Any / AnyObject 타입 캐스팅
+
+/**
+ * Any
+ * 어떤 타입의 인스턴스도 표현할 수 있는 타입
+ *
+ * AnyObject
+ * 어떤 클래스 타입의 인스턴스도 표현할 수 있는 타입
+ *
+ * Any / AnyObject -----> String, Int, ... 는 다운 캐스팅 (as? / as!)
+ * String, Int, ...  -----> Any / AnyObject 는 업캐스팅(as)
+ */
+
+
+
+// switch문과 타입 캐스팅 연산자의 활용
+
+class Person {
+    var name: String = "이름을 입력하세요"
+}
+
+let array: [Any] = [5, 1.5, "Hello, world!", Person(), {(name: String) in return name}]
+
+(array[1] as! Double).isZero
+
+
+for (index, item) in array.enumerated() {
+    switch item {
+    case is Int:
+        print("\(index): 정수입니다.")
+    case is Double:
+        print("\(index): Double형입니다.")
+    case _ as String:
+        print("\(index): 문자열입니다.")
+    default:
+        print("\(index): 기타 타입입니다.")
+    }
+}

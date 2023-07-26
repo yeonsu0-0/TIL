@@ -94,3 +94,71 @@ struct DataStructure: DataList {
         }
     }
 }
+
+
+
+
+
+// 타입으로서의 프로토콜
+// 프로토콜은 일급 객체로서 타입이다!
+
+protocol Remote {
+    func turnOn()
+    func turnOff()
+}
+
+
+class Television: Remote {
+    func turnOn() {
+        print("TV 키기")
+    }
+    func turnOff() {
+        print("TV 끄기")
+    }
+}
+
+
+struct SettopBox: Remote {
+    func turnOn() {
+        print("셋톱박스 키기")
+    }
+    func turnOff() {
+        print("셋톱박스 끄기")
+    }
+}
+
+let myTelevision = Television()
+myTelevision.turnOn()
+myTelevision.turnOff()
+
+let mySettop = SettopBox()
+
+
+// 예시 1: 프로토콜 타입을 가진 배열 생성
+let electronic: [Remote] = [myTelevision, mySettop]
+
+for items in electronic {
+    items.turnOn()
+}
+
+
+// 예시 2: 함수를 호출할 때 프로토콜을 파라미터로 전달
+func turnOnElectronic(item: Remote) {
+    item.turnOn()
+}
+
+turnOnElectronic(item: myTelevision)
+turnOnElectronic(item: mySettop)
+
+
+// 프로토콜 준수성 검사
+myTelevision is Remote
+electronic[1] is SettopBox
+
+// 업캐스팅
+let newBox = mySettop as Remote
+newBox.turnOn()
+
+// 다운캐스팅
+let newBox2: Remote = electronic[1] as! SettopBox
+newBox2.turnOn()

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DelegatePattern" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="당신의 휴대폰은" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lg0-qG-csr">
+                                <rect key="frame" x="96" y="251" width="201" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4oW-Ej-CVv">
+                                <rect key="frame" x="76.666666666666686" y="314" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="tBv-uH-ExU"/>
+                                    <constraint firstAttribute="height" constant="240" id="xcP-Fc-nbw"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7P-JA-Eu1">
+                                <rect key="frame" x="142.66666666666666" y="622" width="108" height="43"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="선택하기">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="upH-Jr-8yN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4oW-Ej-CVv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RtU-kX-nzq"/>
+                            <constraint firstItem="4oW-Ej-CVv" firstAttribute="top" secondItem="lg0-qG-csr" secondAttribute="bottom" constant="24" id="SVs-hH-b0F"/>
+                            <constraint firstItem="lg0-qG-csr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="192" id="UfA-ow-9pz"/>
+                            <constraint firstItem="r7P-JA-Eu1" firstAttribute="top" secondItem="4oW-Ej-CVv" secondAttribute="bottom" constant="68" id="bGw-Ww-MqN"/>
+                            <constraint firstItem="r7P-JA-Eu1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fUa-Ej-yj8"/>
+                            <constraint firstItem="lg0-qG-csr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ivL-Sn-aoW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chooseButton" destination="r7P-JA-Eu1" id="Ylp-sI-xqZ"/>
+                        <outlet property="imageView" destination="4oW-Ej-CVv" id="mZb-1Z-yWH"/>
+                        <outlet property="nameLabel" destination="lg0-qG-csr" id="Wx5-od-peW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113.74045801526717" y="-27.464788732394368"/>
+        </scene>
+        <!--Selection View Controller-->
+        <scene sceneID="9HD-H8-MmD">
+            <objects>
+                <viewController restorationIdentifier="SelectionScreen" storyboardIdentifier="SelectionScreen" id="Ilm-yV-Vdd" customClass="SelectionViewController" customModule="DelegatePattern" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wMo-kn-3hZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 사용 중인 휴대폰을 선택해주세요" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wy-ig-iQk">
+                                <rect key="frame" x="48" y="143" width="297.33333333333331" height="76.666666666666686"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bi-NR-6dg">
+                                <rect key="frame" x="80.666666666666686" y="245.66666666666663" width="232" height="232"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="232" id="ByR-e0-7zl"/>
+                                    <constraint firstAttribute="width" constant="232" id="GUE-sq-XjM"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="iPhone"/>
+                                <connections>
+                                    <action selector="iPhoneTapped:" destination="Ilm-yV-Vdd" eventType="touchUpInside" id="9Bh-tp-Jag"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Anu-eN-X0R">
+                                <rect key="frame" x="68.666666666666686" y="517.66666666666663" width="256" height="237"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="GSe-Rn-GaL"/>
+                                    <constraint firstAttribute="height" constant="237" id="clF-YX-TEm"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="samsung"/>
+                                <connections>
+                                    <action selector="samsungTapped:" destination="Ilm-yV-Vdd" eventType="touchUpInside" id="NIn-rk-Dzm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6uG-kL-dpi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Anu-eN-X0R" firstAttribute="centerX" secondItem="wMo-kn-3hZ" secondAttribute="centerX" id="5kb-RE-HqB"/>
+                            <constraint firstItem="Anu-eN-X0R" firstAttribute="top" secondItem="7bi-NR-6dg" secondAttribute="bottom" constant="40" id="8O6-PH-naO"/>
+                            <constraint firstItem="3wy-ig-iQk" firstAttribute="top" secondItem="6uG-kL-dpi" secondAttribute="top" constant="84" id="EUp-RD-gWE"/>
+                            <constraint firstItem="3wy-ig-iQk" firstAttribute="centerX" secondItem="wMo-kn-3hZ" secondAttribute="centerX" id="JEU-oY-eY9"/>
+                            <constraint firstItem="7bi-NR-6dg" firstAttribute="centerX" secondItem="wMo-kn-3hZ" secondAttribute="centerX" id="Qu5-4U-072"/>
+                            <constraint firstItem="7bi-NR-6dg" firstAttribute="top" secondItem="3wy-ig-iQk" secondAttribute="bottom" constant="26" id="aEg-SQ-g13"/>
+                            <constraint firstItem="7bi-NR-6dg" firstAttribute="centerX" secondItem="wMo-kn-3hZ" secondAttribute="centerX" id="dZv-z8-Nfn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yQR-HN-OLH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841.9847328244274" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iPhone" width="480" height="480"/>
+        <image name="samsung" width="1080" height="1080"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
